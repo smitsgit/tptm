@@ -20,8 +20,10 @@ def get_settings(config):
 
 def init_routing(config):
     config.add_static_view('static', 'static', cache_max_age=3600)
-    config.add_route('home', '/')
+    #config.add_route('home', '/')
+    config.add_handler('root', '/', handler=home_controller.HomeController, action='index')
     config.add_handler('home_ctrl', '/home/{action}', handler=home_controller.HomeController)
+    config.add_handler('home_ctrl/', '/home/{action}/', handler=home_controller.HomeController)
     # config.add_route('albums', '/albums')
     # config.add_route('album', '/albums/{name_fragment}')
     # config.add_route('store', '/buy/{name_fragment}')
