@@ -34,7 +34,8 @@
 </div>
 
 <div class="main_content">
-    <h1>Home Page</h1>
+    <h1>About Page</h1>
+    <div>The value from controller is ${value}</div>
 </div>
 
 <!-- Bootstrap core JavaScript
