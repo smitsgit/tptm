@@ -28,6 +28,15 @@
 <body>
 
 <div class="nav">
+
+    <div style="float: right;">
+          <a href="#" tal:condition="not view.is_logged_in">SignIn</a>
+          <a href="#" tal:condition="not view.is_logged_in">Register</a>
+
+          <a href="#" tal:condition="view.is_logged_in">Account</a>
+          <a href="#" tal:condition="view.is_logged_in">Logout</a>
+    </div>
+
     <a href="/home/index">home</a>
     <a href="/home/about">about</a>
     <a href="/albums">about</a>
