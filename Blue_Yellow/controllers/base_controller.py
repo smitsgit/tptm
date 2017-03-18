@@ -1,5 +1,6 @@
 import Blue_Yellow.infrastructure.static_cache as cache
 import pyramid.renderers
+import pyramid.httpexceptions as exc
 
 
 class BaseController:
@@ -15,3 +16,8 @@ class BaseController:
     @property
     def is_logged_in(self):
         return False
+
+    def redirect(self, url_to, permanent=False):
+        if permanent:
+           raise exc.HTTPMovedPermanently(url_to)
+        raise exc.HTTPFound(url_to)
