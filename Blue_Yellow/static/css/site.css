@@ -43,3 +43,10 @@ body {
 .album-in-list .album-title{
    font-size: 18px;
 }
+
+.standard-form input {
+    width: 350px;
+}
+.standard-form input, .standard-form button {
+    margin: 10px;
+}
