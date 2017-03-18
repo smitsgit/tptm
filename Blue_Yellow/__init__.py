@@ -1,5 +1,7 @@
 from pyramid.config import Configurator
 from Blue_Yellow.controllers import home_controller
+from Blue_Yellow.controllers import albums_controller
+
 
 def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.
@@ -20,16 +22,25 @@ def get_settings(config):
 
 def init_routing(config):
     config.add_static_view('static', 'static', cache_max_age=3600)
-    #config.add_route('home', '/')
     config.add_handler('root', '/', handler=home_controller.HomeController, action='index')
-    config.add_handler('home_ctrl', '/home/{action}', handler=home_controller.HomeController)
-    config.add_handler('home_ctrl/', '/home/{action}/', handler=home_controller.HomeController)
-    # config.add_route('albums', '/albums')
-    # config.add_route('album', '/albums/{name_fragment}')
-    # config.add_route('store', '/buy/{name_fragment}')
+    add_controller_routes(config, home_controller.HomeController, 'home')
+    add_controller_routes(config, albums_controller.AlbumController, 'albums')
     config.scan()
 
 
 def init_includes(config):
     config.include('pyramid_chameleon')
     config.include('pyramid_handlers')  # we can call config.addHandler instead of config.addroute
+
+
+def add_controller_routes(config, ctrl, prefix):
+    print('adding route {}'.format('/' + prefix))
+    config.add_handler(prefix + 'ctrl_index', '/' + prefix, handler=ctrl, action='index')
+    print('adding route {}'.format('/' + prefix + '/'))
+    config.add_handler(prefix + 'ctrl_index/', '/' + prefix + '/', handler=ctrl, action='index')
+    print('adding route {}'.format('/' + prefix + '/{action}'))
+    config.add_handler(prefix + 'ctrl', '/' + prefix + '/{action}', handler=ctrl)
+    print('adding route {}'.format('/' + prefix + '/{action}/'))
+    config.add_handler(prefix + 'ctrl/', '/' + prefix + '/{action}/', handler=ctrl)
+    print('adding route {}'.format('/' + prefix + '/{action}/{id}'))
+    config.add_handler(prefix + 'ctrl_id', '/' + prefix + '/{action}/{id}', handler=ctrl)

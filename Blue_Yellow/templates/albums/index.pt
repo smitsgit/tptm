@@ -15,8 +15,8 @@
     <link href="/static/bower_components/bootstrap-css/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this scaffold -->
-    <link href="/static/css/theme.css?cacheId=${build_cache_id('/static/css/theme.css')}" rel="stylesheet">
-    <link href="/static/css/site.css?cacheId=${build_cache_id('/static/css/site.css')}" rel="stylesheet">
+    <link href="/static/css/theme.css?cacheId=${view.build_cache_id('/static/css/theme.css')}" rel="stylesheet">
+    <link href="/static/css/site.css?cacheId=${view.build_cache_id('/static/css/site.css')}" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -30,11 +30,28 @@
 <div class="nav">
     <a href="/home/index">home</a>
     <a href="/home/about">about</a>
+    <a href="/albums">about</a>
     <a href="/home/contact">contact</a>
 </div>
 
 <div class="main_content">
-    <h1>Home Page</h1>
+    <h1>Albums</h1>
+    <div class="album-in-list" tal:repeat="a albums">
+       <img src="${a.image}" alt=""><br>
+       <h2>${a.title}
+           <a href="#" tal:condition="a.has_preview"> preview </a>
+       </h2>
+
+        <div class="album-title">
+           <ul>
+             <li tal:repeat="t a.tracks">
+                 ${t.title}
+             </li>
+           </ul>
+          ${len(a.tracks)}
+        </div>
+        <div style="clear: both;"
+    </div>
 </div>
 
 <!-- Bootstrap core JavaScript
