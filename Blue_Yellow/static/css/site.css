@@ -5,13 +5,16 @@ body {
 
 .main_content {
     line-height: 1.5em;
-    padding: 20px;
+    padding: 0px;
 }
 
 .nav {
     background-color: black;
-    font-size: 18px;
     color: white;
+}
+
+.navbar-inverse{
+  background-color: black;
 }
 
 .nav a {
@@ -49,4 +52,8 @@ body {
 }
 .standard-form input, .standard-form button {
     margin: 10px;
+}
+
+.main_content{
+   margin-top:50px
 }
