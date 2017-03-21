@@ -57,3 +57,11 @@ body {
 .main_content{
    margin-top:50px
 }
+
+.yellow-foreground {
+    color: #ffdb3d;
+}
+
+.blue-foreground {
+    color: #326aa5;
+}

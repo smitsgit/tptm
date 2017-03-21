@@ -1,7 +1,17 @@
 from pyramid.config import Configurator
+import os
+import Blue_Yellow
 from Blue_Yellow.controllers import home_controller
 from Blue_Yellow.controllers  import albums_controller
 from Blue_Yellow.controllers  import account_controller
+from Blue_Yellow.data.dbsession import DbSessionFactory
+
+
+def init_db(config):
+    top_dir = os.path.dirname(Blue_Yellow.__file__)
+    rel_path = os.path.join('db', 'blue_yellow.sqlite')
+    db_file = os.path.join(top_dir, rel_path)
+    DbSessionFactory.global_init_database(db_file)
 
 
 def main(global_config, **settings):
@@ -12,6 +22,7 @@ def main(global_config, **settings):
 
     init_includes(config)
     init_routing(config)
+    init_db(config)
     return config.make_wsgi_app()
 
 
